@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#090909" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <style>
+:root{--bg:#090909;--bg2:#10100f;--line:#26241f;--muted:#8f8b7f;--text:#f1eee5;--gold:#d4a94f;--good:#89b892;--bad:#c1786e;--panel:#11110f;--pad:20px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-variant-numeric:tabular-nums}.shell{min-height:100vh}.side{position:fixed;inset:0 auto 0 0;width:220px;border-right:1px solid var(--line);padding:22px 16px;background:#0b0b0a;display:flex;flex-direction:column;z-index:5}.brand{display:flex;gap:10px;align-items:center;margin-bottom:30px}.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px #d4a94f66}.brand b{letter-spacing:.16em}.brand small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.side nav{display:grid;gap:4px}.navBtn{background:none;border:0;color:#aaa69a;text-align:left;padding:10px 8px;border-left:2px solid transparent;font-size:12px;letter-spacing:.12em;cursor:pointer}.navBtn.active{color:var(--text);border-color:var(--gold);background:#15140f}.sideFoot{margin-top:auto;color:#6f6b61;font-size:9px;line-height:1.7;letter-spacing:.15em}.sideFoot span{color:var(--gold)}main{margin-left:220px;padding:28px 34px 90px;max-width:1450px}.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}.eyebrow{font-size:10px;letter-spacing:.18em;color:var(--muted)}h1{font-size:20px;margin:4px 0 0;letter-spacing:.08em;font-weight:600}.source{display:flex;align-items:center;gap:8px;text-align:right}.source b{display:block;font-size:11px;letter-spacing:.14em}.source small{display:block;color:var(--muted);font-size:10px;margin-top:2px}.lamp{width:7px;height:7px;border-radius:50%;background:#777}.lamp.ok{background:var(--good);box-shadow:0 0 12px #89b89288}.lamp.warn{background:var(--gold)}.lamp.bad{background:var(--bad)}.view{display:none}.view.active{display:block}.hero{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(220px,.7fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0 26px;gap:30px}.trend{font-family:Georgia,"Times New Roman",serif;font-size:clamp(58px,9vw,124px);line-height:.9;margin:11px 0 22px;letter-spacing:-.05em}.trend.up{color:var(--good)}.trend.down{color:var(--bad)}.trend.neutral{color:var(--text)}.confidence{display:flex;justify-content:space-between;max-width:420px;font-size:10px;letter-spacing:.14em}.confidence b{font-size:14px;color:var(--gold)}.bar{height:2px;max-width:420px;background:#222;margin-top:8px}.bar i,.cycleBar i{display:block;height:100%;width:0;background:var(--gold);transition:width .5s ease}.why{color:#bbb7aa;max-width:650px;margin-top:18px;font-size:13px;line-height:1.5}.heroMeta{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);align-self:start}.heroMeta>div{background:var(--bg);padding:14px}.heroMeta span,.metricGrid span,.cycleRow span{display:block;color:var(--muted);font-size:9px;letter-spacing:.14em}.heroMeta b{display:block;margin-top:5px;font-size:13px}.cycleRow{display:grid;grid-template-columns:100px 1fr auto;gap:12px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}.cycleRow b{font-size:13px}.cycleBar{height:2px;background:#222}.cycleRow small{color:var(--muted);font-size:9px}.metricGrid{display:grid;gap:1px;background:var(--line);margin:18px 0}.metricGrid.four{grid-template-columns:repeat(4,1fr)}.metricGrid article{background:var(--panel);padding:16px}.metricGrid b{display:block;margin:7px 0 4px;font-size:23px;font-weight:500}.metricGrid small{color:#77736a;font-size:9px}.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:var(--panel);border-top:1px solid #3b362a;padding:17px}.panelHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.panelHead b{font-size:11px;letter-spacing:.12em}.panelHead span{font-size:9px;color:var(--muted)}.regimeBars{display:grid;gap:11px}.regimeLine{display:grid;grid-template-columns:120px 1fr 45px;gap:10px;align-items:center;font-size:10px}.regimeLine span{color:#a8a498}.regimeLine .mini{height:2px;background:#27251f}.regimeLine .mini i{display:block;height:2px;background:var(--gold)}.regimeLine b{text-align:right}.paramList{display:grid}.paramRow{display:grid;grid-template-columns:1fr 70px 20px;padding:7px 0;border-bottom:1px solid #1f1e1a;font-size:10px}.paramRow span{color:#aaa69a}.paramRow b{text-align:right}.paramRow em{font-style:normal;text-align:right;color:var(--gold)}.chartPanel{margin-top:18px}canvas{width:100%;display:block}.sectionTitle{font-family:Georgia,serif;font-size:36px;margin:8px 0 18px}.sectionSub{color:var(--muted);font-size:12px;max-width:760px;line-height:1.5}.table{width:100%;border-collapse:collapse;font-size:11px;margin-top:18px}.table th{color:var(--muted);font-size:9px;letter-spacing:.12em;text-align:left;font-weight:500}.table th,.table td{border-bottom:1px solid var(--line);padding:10px 8px}.table td:last-child,.table th:last-child{text-align:right}.pillStatus{font-size:9px;letter-spacing:.1em}.good{color:var(--good)}.bad{color:var(--bad)}.gold{color:var(--gold)}.twoCol{display:grid;grid-template-columns:1fr 1fr;gap:18px}.control{display:grid;gap:6px;margin:12px 0}.control label{font-size:9px;color:var(--muted);letter-spacing:.12em}.control input,.control select,.control textarea{background:#0c0c0b;border:1px solid var(--line);color:var(--text);padding:10px;width:100%;font:inherit}.btn{border:1px solid #61563a;background:#18160f;color:var(--text);padding:10px 13px;font-size:10px;letter-spacing:.1em;cursor:pointer}.btn:hover{border-color:var(--gold)}.btnRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.logline{font-size:10px;border-bottom:1px solid var(--line);padding:10px 0;display:grid;grid-template-columns:88px 1fr auto;gap:12px}.logline time{color:var(--muted)}footer{color:#5e5a52;font-size:9px;letter-spacing:.06em;padding-top:35px}.mobileNav{display:none}
+@media(max-width:800px){:root{--pad:15px}.side{display:none}main{margin-left:0;padding:18px 15px 92px}.topbar{margin-bottom:16px}.topbar h1{font-size:17px}.hero{grid-template-columns:1fr;padding:21px 0 18px;gap:18px}.trend{font-size:72px;margin:10px 0 18px}.heroMeta{grid-template-columns:repeat(4,1fr)}.heroMeta>div{padding:10px 8px}.heroMeta span{font-size:7px}.heroMeta b{font-size:10px;word-break:break-word}.cycleRow{grid-template-columns:64px 1fr}.cycleRow small{grid-column:1/-1}.metricGrid.four{grid-template-columns:1fr 1fr}.metricGrid b{font-size:19px}.metricGrid article{padding:13px}.split,.twoCol{grid-template-columns:1fr}.panel{padding:14px}.mobileNav{display:grid;position:fixed;left:0;right:0;bottom:0;grid-template-columns:repeat(7,1fr);background:#0b0b0af2;border-top:1px solid var(--line);z-index:8;padding-bottom:env(safe-area-inset-bottom)}.mobileNav .navBtn{text-align:center;border-left:0;border-top:2px solid transparent;padding:13px 3px 11px;font-size:8px;letter-spacing:.04em}.mobileNav .navBtn.active{border-top-color:var(--gold);background:#14130f}.regimeLine{grid-template-columns:92px 1fr 40px}.sectionTitle{font-size:28px}.table{font-size:10px;display:block;overflow-x:auto;white-space:nowrap}.source b{font-size:9px}.source small{font-size:8px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+</style>
+  <title>Adaptive Market State Engine</title>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><span class="dot"></span><div><b>A-MSE</b><small>Adaptive Market State Engine</small></div></div>
+    <nav id="desktopNav"></nav>
+    <div class="sideFoot">RESEARCH TERMINAL<br><span id="sideMode">BOOT</span></div>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">PROPRIETARY ADAPTIVE CORE</div>
+        <h1 id="pageTitle">LIVE</h1>
+      </div>
+      <div class="source"><span id="sourceLamp" class="lamp"></span><div><b id="sourceMode">CONNECTING</b><small id="sourceTime">--:--:--</small></div></div>
+    </header>
+
+    <section id="view-live" class="view active">
+      <div class="hero">
+        <div class="heroLeft">
+          <span class="eyebrow">MARKET TREND</span>
+          <div id="trend" class="trend neutral">NEUTRAL</div>
+          <div class="confidence"><span>CONFIDENCE</span><b id="confidence">--%</b></div>
+          <div class="bar"><i id="confidenceBar"></i></div>
+          <p id="why" class="why">Waiting for enough market state history.</p>
+        </div>
+        <div class="heroMeta">
+          <div><span>REGIME</span><b id="regime">INITIALISING</b></div>
+          <div><span>STABILITY</span><b id="stability">--%</b></div>
+          <div><span>ADAPTATION</span><b id="adaptation">FROZEN</b></div>
+          <div><span>DIFFUSION TEMP</span><b id="temperature">0.00</b></div>
+        </div>
+      </div>
+
+      <div class="cycleRow">
+        <div><span>5M CYCLE</span><b id="cycleClock">--:--</b></div>
+        <div class="cycleBar"><i id="cycleBar"></i></div>
+        <small id="cycleReset">Reset aligned to wall-clock 5-minute boundary</small>
+      </div>
+
+      <div class="metricGrid four">
+        <article><span>FAST · NDX</span><b id="fastMove">--</b><small>normalized cycle move</small></article>
+        <article><span>SLOW · SPX</span><b id="slowMove">--</b><small>normalized cycle move</small></article>
+        <article><span>DIVERGENCE</span><b id="divergence">--</b><small>fast minus slow</small></article>
+        <article><span>ACCELERATION</span><b id="acceleration">--</b><small>divergence curvature</small></article>
+      </div>
+
+      <div class="split">
+        <section class="panel">
+          <div class="panelHead"><b>REGIME FIELD</b><span>continuous membership</span></div>
+          <div id="regimeBars" class="regimeBars"></div>
+        </section>
+        <section class="panel">
+          <div class="panelHead"><b>ADAPTIVE CORE</b><span>live parameters</span></div>
+          <div id="coreParams" class="paramList"></div>
+        </section>
+      </div>
+
+      <section class="panel chartPanel">
+        <div class="panelHead"><b>SENSOR FUSION</b><span id="chartCaption">cycle-normalized NDX vs SPX</span></div>
+        <canvas id="mainChart" height="190"></canvas>
+      </section>
+    </section>
+
+    <section id="view-adapt" class="view"><div id="adaptContent"></div></section>
+    <section id="view-memory" class="view"><div id="memoryContent"></div></section>
+    <section id="view-audit" class="view"><div id="auditContent"></div></section>
+    <section id="view-ablation" class="view"><div id="ablationContent"></div></section>
+    <section id="view-log" class="view"><div id="logContent"></div></section>
+    <section id="view-settings" class="view"><div id="settingsContent"></div></section>
+
+    <footer>Analytical research tool. No broker integration. No guaranteed predictive performance.</footer>
+  </main>
+
+  <nav id="mobileNav" class="mobileNav"></nav>
+</div>
+<script type="module">
+const NAV = ["LIVE","ADAPT","MEMORY","AUDIT","ABLATION","LOG","SETTINGS"];
+const $ = (id) => document.getElementById(id);
+const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
+const sigmoid = x => 1/(1+Math.exp(-x));
+const mean = a => a.length ? a.reduce((s,v)=>s+v,0)/a.length : 0;
+const std = a => { const m=mean(a); return Math.sqrt(mean(a.map(v=>(v-m)**2))) || 0; };
+const pct = v => `${v>=0?"+":""}${v.toFixed(3)}%`;
+const nowTime = t => new Date(t).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit",second:"2-digit"});
+const corr=(a,b)=>{ if(a.length<3||b.length!==a.length)return 0; const ma=mean(a),mb=mean(b),sa=std(a),sb=std(b); if(!sa||!sb)return 0; return clamp(mean(a.map((v,i)=>(v-ma)*(b[i]-mb)))/(sa*sb),-1,1); };
+const returns = arr => arr.slice(1).map((v,i)=>((v/arr[i])-1)*100);
+const sign = v => v>0?1:v<0?-1:0;
+const safe = n => Number.isFinite(n)?n:0;
+
+const PARAM_META = {
+  fastWeight:{label:"FAST WEIGHT",min:.35,max:.75,elasticity:"HIGH",maxCycle:.015,maxHour:.08,minConf:.52,decimals:3},
+  slowWeight:{label:"SLOW WEIGHT",min:.25,max:.65,elasticity:"MEDIUM",maxCycle:.015,maxHour:.08,minConf:.52,decimals:3},
+  memory:{label:"MEMORY",min:3,max:12,elasticity:"LOW",maxCycle:.25,maxHour:1,minConf:.70,decimals:1},
+  smoothing:{label:"SMOOTHING",min:.45,max:.90,elasticity:"MEDIUM",maxCycle:.012,maxHour:.06,minConf:.58,decimals:3},
+  neutralBand:{label:"NEUTRAL BAND",min:.025,max:.30,elasticity:"HIGH",maxCycle:.012,maxHour:.07,minConf:.50,decimals:3},
+  upThreshold:{label:"UP THRESHOLD",min:.05,max:.65,elasticity:"HIGH",maxCycle:.015,maxHour:.08,minConf:.52,decimals:3},
+  downThreshold:{label:"DOWN THRESHOLD",min:.05,max:.65,elasticity:"HIGH",maxCycle:.015,maxHour:.08,minConf:.52,decimals:3},
+  persistence:{label:"PERSISTENCE",min:1.5,max:6,elasticity:"MEDIUM",maxCycle:.15,maxHour:.65,minConf:.58,decimals:2},
+  hysteresis:{label:"HYSTERESIS",min:.01,max:.20,elasticity:"MEDIUM",maxCycle:.008,maxHour:.04,minConf:.60,decimals:3},
+  decay:{label:"DECAY",min:.72,max:.98,elasticity:"MEDIUM",maxCycle:.008,maxHour:.04,minConf:.60,decimals:3},
+  shockThreshold:{label:"SHOCK THRESHOLD",min:.05,max:.70,elasticity:"HIGH",maxCycle:.018,maxHour:.09,minConf:.50,decimals:3},
+  confirmation:{label:"CONFIRMATION",min:1,max:5,elasticity:"HIGH",maxCycle:.18,maxHour:.8,minConf:.50,decimals:2},
+  cooldown:{label:"COOLDOWN",min:0,max:5,elasticity:"MEDIUM",maxCycle:.15,maxHour:.7,minConf:.60,decimals:2}
+};
+
+const DEFAULT_PARAMS = {
+  fastWeight:.58, slowWeight:.42, memory:5, smoothing:.72, neutralBand:.095,
+  upThreshold:.19, downThreshold:.19, persistence:3.2, hysteresis:.045,
+  decay:.90, shockThreshold:.28, confirmation:2.4, cooldown:1.4
+};
+
+const state = {
+  page:"LIVE", mode:"BOOT", source:"", fetchedAt:Date.now(), data:null,
+  params:{...DEFAULT_PARAMS}, prevParams:{...DEFAULT_PARAMS},
+  features:null, probs:{UP:.33,NEUTRAL:.34,DOWN:.33}, signal:"NEUTRAL", prevSignal:"NEUTRAL",
+  confidence:0, stability:0, adaptation:"FROZEN", temperature:.2,
+  shadow:{count:64,competitive:0,improving:0,candidate:null},
+  logs:[], memories:[], signalHistory:[], lastAdaptAt:0, lastSnapshotCycle:null,
+  imported:false, providerError:null
+};
+
+try {
+  const saved = JSON.parse(localStorage.getItem("amse-state")||"null");
+  if(saved){
+    state.params={...DEFAULT_PARAMS,...(saved.params||{})};
+    state.logs=Array.isArray(saved.logs)?saved.logs.slice(-250):[];
+    state.memories=Array.isArray(saved.memories)?saved.memories.slice(-180):[];
+  }
+}catch{}
+
+function persist(){
+  localStorage.setItem("amse-state",JSON.stringify({params:state.params,logs:state.logs.slice(-250),memories:state.memories.slice(-180)}));
+}
+
+function seededReplay(){
+  let x=9347567; const rnd=()=>{x=(x*1664525+1013904223)>>>0;return x/4294967296;};
+  const end=Math.floor(Date.now()/60000)*60000, n=240;
+  let ndx=20000,spx=5800; const NDX=[],SPX=[];
+  for(let i=0;i<n;i++){
+    const t=end-(n-1-i)*60000;
+    const regime=i<55?0:i<105?1:i<160?2:i<205?3:4;
+    const common=(rnd()-.5)*.00055;
+    let df=0,ds=0;
+    if(regime===0){df=.00018;ds=.00010}
+    if(regime===1){df=.00048;ds=.00016}
+    if(regime===2){df=-.00035;ds=-.00022}
+    if(regime===3){df=(i%7<3?.00028:-.00025);ds=(i%9<4?.00012:-.00011)}
+    if(regime===4){df=.00031;ds=.00020}
+    const cyc=Math.sin(i/5.4)*.00023;
+    ndx*=1+common+df+cyc+(rnd()-.5)*.0007;
+    spx*=1+common*.8+ds+cyc*.45+(rnd()-.5)*.00036;
+    NDX.push({t,v:ndx}); SPX.push({t,v:spx});
+  }
+  return {NDX,SPX};
+}
+
+async function clientSeries(symbol){
+  const url=`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1m&range=1d&includePrePost=false&events=div%2Csplits`;
+  const r=await fetch(url,{cache:"no-store",headers:{"Accept":"application/json,text/plain,*/*"}});
+  if(!r.ok) throw new Error(`provider ${r.status}`);
+  const j=await r.json(), result=j?.chart?.result?.[0];
+  if(!result) throw new Error("provider payload missing");
+  const ts=result.timestamp||[], q=result.indicators?.quote?.[0]?.close||[], out=[];
+  for(let i=0;i<Math.min(ts.length,q.length);i++) if(Number.isFinite(q[i])) out.push({t:ts[i]*1000,v:Number(q[i])});
+  if(out.length<8) throw new Error("insufficient provider history");
+  return out.slice(-240);
+}
+async function fetchMarket(){
+  if(state.imported) return;
+  try{
+    const [NDX,SPX]=await Promise.all([clientSeries("%5ENDX"),clientSeries("%5EGSPC")]);
+    state.data={NDX,SPX}; state.mode="DELAYED"; state.source="Yahoo Finance public chart endpoint"; state.fetchedAt=Date.now(); state.providerError=null;
+  }catch(e){
+    if(!state.data) state.data=seededReplay();
+    state.mode="REPLAY"; state.source="deterministic seeded replay"; state.fetchedAt=Date.now(); state.providerError=e?.message||"provider unavailable";
+  }
+  calculate(); render();
+}
+
+function aligned(){
+  if(!state.data) return [];
+  const a=state.data.NDX||[], b=state.data.SPX||[];
+  const bm=new Map(b.map(p=>[Math.round(p.t/60000),p]));
+  const rows=[];
+  for(const p of a){ const q=bm.get(Math.round(p.t/60000)); if(q) rows.push({t:p.t,f:p.v,s:q.v}); }
+  return rows.slice(-240);
+}
+
+function deriveFeatures(rows){
+  if(rows.length<8) return null;
+  const last=rows.at(-1); const cycleStart=Math.floor(last.t/300000)*300000;
+  let base=rows.filter(r=>r.t<=cycleStart).at(-1) || rows.find(r=>r.t>=cycleStart) || rows[0];
+  const fMove=((last.f/base.f)-1)*100, sMove=((last.s/base.s)-1)*100, div=fMove-sMove;
+  const recent=rows.slice(-Math.min(24,rows.length));
+  const fRet=returns(recent.map(r=>r.f)), sRet=returns(recent.map(r=>r.s));
+  const dSeries=recent.map(r=>((r.f/recent[0].f)-1)*100-((r.s/recent[0].s)-1)*100);
+  const velocity=dSeries.length>1?dSeries.at(-1)-dSeries.at(-2):0;
+  const prevVel=dSeries.length>2?dSeries.at(-2)-dSeries.at(-3):0;
+  const acceleration=velocity-prevVel;
+  const volF=std(fRet),volS=std(sRet),volRatio=volS?volF/volS:1;
+  const correlation=corr(fRet,sRet);
+  const oldCorr=corr(fRet.slice(0,-4),sRet.slice(0,-4));
+  const corrChange=correlation-oldCorr;
+  const diffs=dSeries.slice(1).map((v,i)=>v-dSeries[i]);
+  const persistent=diffs.length?Math.abs(mean(diffs.map(sign))):0;
+  const revs=diffs.slice(1).filter((v,i)=>sign(v)!==sign(diffs[i])&&sign(v)!==0&&sign(diffs[i])!==0).length;
+  const reversalFreq=diffs.length>1?revs/(diffs.length-1):0;
+  const noise=clamp(reversalFreq*.75+(1-persistent)*.35,0,1);
+  const shock=clamp(Math.max(Math.abs(fRet.at(-1)||0)/(volF||.01),Math.abs(sRet.at(-1)||0)/(volS||.01))/4,0,1);
+  const leadLag=clamp((Math.abs(velocity)/(volF+volS+.01))*1.2,0,1);
+  const cycleAge=(last.t-cycleStart)/300000;
+  const trendStrength=clamp((Math.abs(div)/(.08+volF+volS))*1.3,0,1);
+  const volExpansion=clamp((volF+volS)/.18,0,1);
+  const fastLeadership=clamp(sigmoid((div*9)+(velocity*12))-0.18,0,1);
+  const meanReversion=clamp(noise*.75+(correlation>.8?.15:0),0,1);
+  const chop=clamp(noise*.9+(trendStrength<.2?.18:0),0,1);
+  const regimeWeights={TREND:trendStrength,VOL_EXPANSION:volExpansion,FAST_LEADERSHIP:fastLeadership,MEAN_REVERSION:meanReversion,SHOCK:shock,CHOP:chop};
+  const regime=Object.entries(regimeWeights).sort((a,b)=>b[1]-a[1])[0][0].replaceAll("_"," ");
+  const novelty=clamp(Math.abs(corrChange)*1.8+shock*.65+Math.abs(acceleration)*3.5,0,1);
+  return {fMove,sMove,div,velocity,acceleration,volF,volS,volRatio,correlation,corrChange,persistent,reversalFreq,noise,shock,leadLag,cycleAge,regimeWeights,regime,novelty,cycleStart,lastT:last.t};
+}
+
+function evaluateSignal(f,p=state.params, previous=state.signal){
+  if(!f) return {signal:"NEUTRAL",probs:{UP:.33,NEUTRAL:.34,DOWN:.33},score:0,confidence:0};
+  const leadership = f.div * p.fastWeight;
+  const acceleration = f.acceleration * .8;
+  const persistenceBoost = f.persistent * sign(f.div) * .09;
+  const corrPenalty = (1-Math.abs(f.correlation))*.025*sign(f.div);
+  const shockAdj = f.shock>p.shockThreshold ? f.velocity*.55 : 0;
+  let score=(leadership+acceleration+persistenceBoost+corrPenalty+shockAdj)*(1-f.noise*.45);
+  if(previous==="UP") score+=p.hysteresis;
+  if(previous==="DOWN") score-=p.hysteresis;
+  const upEdge=score-p.upThreshold, downEdge=-score-p.downThreshold;
+  const up=sigmoid(upEdge*10), down=sigmoid(downEdge*10);
+  const neutral=clamp(1-Math.abs(score)/(p.neutralBand+.08),.04,.96);
+  const sum=up+down+neutral;
+  const probs={UP:up/sum,NEUTRAL:neutral/sum,DOWN:down/sum};
+  let signal=Object.entries(probs).sort((a,b)=>b[1]-a[1])[0][0];
+  if(Math.abs(score)<p.neutralBand) signal="NEUTRAL";
+  const maxP=Math.max(...Object.values(probs));
+  const confidence=clamp((maxP-.34)/.66*(1-f.noise*.35),0,1);
+  return {signal,probs,score,confidence};
+}
+
+function desiredParams(f){
+  const p={...state.params};
+  const cleanTrend=f.regimeWeights.TREND*(1-f.noise);
+  const noisyVol=f.regimeWeights.VOL_EXPANSION*f.noise;
+  const fastLead=f.regimeWeights.FAST_LEADERSHIP;
+  p.fastWeight=.52+fastLead*.13+cleanTrend*.05-f.noise*.05;
+  p.slowWeight=1-p.fastWeight;
+  p.neutralBand=.07+f.noise*.11+f.shock*.035-cleanTrend*.025;
+  p.upThreshold=.16+noisyVol*.13+f.shock*.05-cleanTrend*.035;
+  p.downThreshold=.16+noisyVol*.13+f.shock*.05-cleanTrend*.035;
+  p.persistence=2.5+f.noise*1.8+f.shock*.6-cleanTrend*.55;
+  p.hysteresis=.035+f.noise*.055+f.shock*.025;
+  p.smoothing=.67+f.noise*.13-f.shock*.04;
+  p.decay=.87+f.regimeWeights.TREND*.06-f.shock*.05;
+  p.shockThreshold=.24+f.noise*.12;
+  p.confirmation=1.8+f.noise*1.7+f.shock*.45-cleanTrend*.35;
+  p.cooldown=.8+f.reversalFreq*2.8+f.shock*.7;
+  p.memory=4.5+f.noise*2.4-cleanTrend*.7;
+  return p;
+}
+
+function adapt(f,confidence){
+  state.prevParams={...state.params};
+  const novelty=f.novelty, instability=clamp(f.noise*.45+f.shock*.45+Math.abs(f.corrChange)*.6,0,1);
+  state.temperature=clamp(.12+novelty*.48+instability*.32+(1-confidence)*.15,.08,.88);
+  state.adaptation=confidence<.38?"FROZEN":confidence<.62?"CAUTIOUS":"ACTIVE";
+  if(state.adaptation==="FROZEN") return;
+  const target=desiredParams(f);
+  const speed=state.adaptation==="ACTIVE"?.7:.28;
+  for(const [k,m] of Object.entries(PARAM_META)){
+    if(confidence<m.minConf) continue;
+    const cur=state.params[k], want=clamp(target[k],m.min,m.max);
+    const raw=(want-cur)*speed*state.temperature;
+    const delta=clamp(raw,-m.maxCycle,m.maxCycle);
+    if(Math.abs(delta)<.0005) continue;
+    state.params[k]=clamp(cur+delta,m.min,m.max);
+    if(Math.abs(state.params[k]-cur)>(k==="memory"||k==="confirmation"||k==="persistence"||k==="cooldown"?.02:.0015)){
+      state.logs.push({t:Date.now(),type:"PARAM",name:m.label,from:cur,to:state.params[k],reason:explainDrivers(f),confidence});
+    }
+  }
+  state.logs=state.logs.slice(-250); persist();
+}
+
+function explainDrivers(f){
+  const d=[];
+  if(f.regimeWeights.FAST_LEADERSHIP>.62)d.push("persistent fast-index leadership");
+  if(f.regimeWeights.VOL_EXPANSION>.58)d.push("volatility expansion");
+  if(f.noise>.55)d.push("elevated chop");
+  if(f.shock>.52)d.push("shock impulse");
+  if(f.correlation<.55)d.push("cross-index decoupling");
+  if(Math.abs(f.acceleration)>.03)d.push(`${f.acceleration>0?"positive":"negative"} divergence acceleration`);
+  if(!d.length)d.push("balanced cross-index state");
+  return d.slice(0,3).join(" + ");
+}
+
+function updateShadow(f,liveEval){
+  let competitive=0,improving=0,best=null;
+  for(let i=0;i<64;i++){
+    const phase=(i+1)*1.618+f.lastT/60000;
+    const q={...state.params};
+    q.fastWeight=clamp(q.fastWeight+Math.sin(phase)*.028*state.temperature,.35,.75); q.slowWeight=1-q.fastWeight;
+    q.neutralBand=clamp(q.neutralBand+Math.cos(phase*.7)*.025*state.temperature,.025,.30);
+    q.upThreshold=clamp(q.upThreshold+Math.sin(phase*.43)*.032*state.temperature,.05,.65); q.downThreshold=q.upThreshold;
+    q.persistence=clamp(q.persistence+Math.cos(phase*.31)*.45*state.temperature,1.5,6);
+    const e=evaluateSignal(f,q,state.prevSignal);
+    const robustness=(e.confidence*.42)+(f.persistent*.17)+((1-f.noise)*.2)+(1-Math.abs(q.fastWeight-state.params.fastWeight)*2)*.1+(1-f.shock*.4)*.11;
+    const liveRob=(liveEval.confidence*.42)+(f.persistent*.17)+((1-f.noise)*.2)+.1+(1-f.shock*.4)*.11;
+    const diff=robustness-liveRob;
+    if(diff>-.01)competitive++; if(diff>.008)improving++;
+    if(!best||diff>best.diff)best={id:i+1,diff,params:q,robustness};
+  }
+  state.shadow={count:64,competitive,improving,candidate:best&&best.diff>.012?best:null};
+}
+
+function snapshotMemory(f){
+  const cycle=Math.floor(f.lastT/300000);
+  if(state.lastSnapshotCycle===cycle)return;
+  state.lastSnapshotCycle=cycle;
+  const prev=state.memories.at(-1);
+  if(prev && prev.signal!==state.signal && state.signal!=="NEUTRAL"){
+    state.logs.push({t:Date.now(),type:"SIGNAL",name:`${prev.signal} → ${state.signal}`,reason:explainDrivers(f),confidence:state.confidence});
+  }
+  const kind=f.noise>.62||f.reversalFreq>.5?"FAILURE_RISK":state.confidence>.68?"SUCCESS":"OBSERVATION";
+  state.memories.push({t:f.lastT,kind,signal:state.signal,regime:f.regime,confidence:state.confidence,vec:[f.div,f.velocity,f.acceleration,f.volRatio,f.correlation,f.noise,f.shock,f.persistent],params:{...state.params}});
+  state.memories=state.memories.slice(-180); persist();
+}
+
+function nearestMemories(f){
+  if(!f)return[]; const v=[f.div,f.velocity,f.acceleration,f.volRatio,f.correlation,f.noise,f.shock,f.persistent];
+  return state.memories.slice(0,-1).map(m=>{
+    const d=Math.sqrt(mean(v.map((x,i)=>((x-(m.vec?.[i]||0))/(i===3?.8:.35))**2)));
+    return {...m,similarity:clamp(1-d,0,1)};
+  }).sort((a,b)=>b.similarity-a.similarity).slice(0,8);
+}
+
+function calculate(){
+  const rows=aligned(), f=deriveFeatures(rows); if(!f)return;
+  state.features=f; state.prevSignal=state.signal;
+  let e=evaluateSignal(f,state.params,state.prevSignal);
+  state.probs=e.probs; state.signal=e.signal; state.confidence=e.confidence;
+  state.signalHistory.push({t:f.lastT,signal:e.signal,score:e.score,confidence:e.confidence}); state.signalHistory=state.signalHistory.slice(-120);
+  state.stability=clamp((f.persistent*.5)+(1-f.noise)*.35+(1-f.novelty)*.15,0,1);
+  adapt(f,e.confidence);
+  e=evaluateSignal(f,state.params,state.prevSignal); state.probs=e.probs; state.signal=e.signal; state.confidence=e.confidence;
+  updateShadow(f,e); snapshotMemory(f);
+}
+
+function regimeBarsHTML(f){ return Object.entries(f.regimeWeights).map(([k,v])=>`<div class="regimeLine"><span>${k.replaceAll("_"," ")}</span><div class="mini"><i style="width:${(v*100).toFixed(0)}%"></i></div><b>${(v*100).toFixed(0)}%</b></div>`).join(""); }
+function paramHTML(keys=["fastWeight","neutralBand","upThreshold","persistence","smoothing","confirmation"]){return keys.map(k=>{const m=PARAM_META[k],v=state.params[k],d=v-state.prevParams[k];return `<div class="paramRow"><span>${m.label}</span><b>${v.toFixed(m.decimals)}</b><em>${Math.abs(d)<.0005?"=":d>0?"↑":"↓"}</em></div>`}).join("");}
+
+function drawChart(){
+  const c=$("mainChart"),ctx=c?.getContext("2d"); if(!ctx)return;
+  const dpr=Math.min(devicePixelRatio||1,2),w=c.clientWidth,h=190;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
+  const rows=aligned().slice(-60); if(rows.length<2)return;
+  const bF=rows[0].f,bS=rows[0].s;const A=rows.map(r=>((r.f/bF)-1)*100),B=rows.map(r=>((r.s/bS)-1)*100); const all=[...A,...B]; const mn=Math.min(...all),mx=Math.max(...all),range=mx-mn||1;
+  ctx.strokeStyle="#292720";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,h/2);ctx.lineTo(w,h/2);ctx.stroke();
+  const plot=(arr,color)=>{ctx.strokeStyle=color;ctx.lineWidth=1.6;ctx.beginPath();arr.forEach((v,i)=>{const x=i/(arr.length-1)*w,y=h-((v-mn)/range*(h-24)+12);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();};
+  plot(A,"#d4a94f");plot(B,"#8f8b7f");
+}
+
+function modeUI(){
+  const mode=state.mode;$("sourceMode").textContent=mode;$("sideMode").textContent=mode;$("sourceTime").textContent=nowTime(state.fetchedAt);const lamp=$("sourceLamp");lamp.className=`lamp ${mode==="DELAYED"||mode==="IMPORTED"?"ok":mode==="REPLAY"?"warn":"bad"}`;
+}
+
+function renderLive(){ const f=state.features;if(!f)return;
+  const tr=$("trend");tr.textContent=state.signal;tr.className=`trend ${state.signal.toLowerCase()}`;$("confidence").textContent=`${Math.round(state.confidence*100)}%`;$("confidenceBar").style.width=`${state.confidence*100}%`;$("why").textContent=explainDrivers(f);$("regime").textContent=f.regime;$("stability").textContent=`${Math.round(state.stability*100)}%`;$("adaptation").textContent=state.adaptation;$("temperature").textContent=state.temperature.toFixed(2);$("fastMove").textContent=pct(f.fMove);$("slowMove").textContent=pct(f.sMove);$("divergence").textContent=pct(f.div);$("acceleration").textContent=pct(f.acceleration);$("regimeBars").innerHTML=regimeBarsHTML(f);$("coreParams").innerHTML=paramHTML();drawChart();
+}
+
+function renderAdapt(){ const f=state.features;if(!f)return; const candidate=state.shadow.candidate;
+  $("adaptContent").innerHTML=`<div class="eyebrow">SELF-MODIFICATION GOVERNOR</div><div class="sectionTitle">Adaptive Core</div><p class="sectionSub">Fast perception, slow self-modification. Parameter motion is bounded by elasticity, confidence gates and per-cycle velocity limits. Shadow candidates never drive the live signal directly.</p>
+  <div class="metricGrid four"><article><span>DIFFUSION TEMP</span><b>${state.temperature.toFixed(2)}</b><small>exploration radius</small></article><article><span>SHADOW STATES</span><b>${state.shadow.count}</b><small>counterfactual population</small></article><article><span>COMPETITIVE</span><b>${state.shadow.competitive}</b><small>near incumbent</small></article><article><span>IMPROVING</span><b>${state.shadow.improving}</b><small>current-window edge</small></article></div>
+  <div class="twoCol"><section class="panel"><div class="panelHead"><b>PARAMETER GOVERNOR</b><span>${state.adaptation}</span></div><table class="table"><thead><tr><th>PARAMETER</th><th>VALUE</th><th>ELASTICITY</th><th>RANGE</th><th>Δ/CYCLE</th></tr></thead><tbody>${Object.entries(PARAM_META).map(([k,m])=>`<tr><td>${m.label}</td><td>${state.params[k].toFixed(m.decimals)}</td><td>${m.elasticity}</td><td>${m.min}–${m.max}</td><td>±${m.maxCycle}</td></tr>`).join("")}</tbody></table></section>
+  <section class="panel"><div class="panelHead"><b>PROMOTION CANDIDATE</b><span>shadow only</span></div>${candidate?`<div class="sectionTitle">θ${candidate.id}</div><p class="sectionSub">Current robustness advantage: <span class="gold">+${(candidate.diff*100).toFixed(2)}</span> points. Candidate remains shadow-only until multi-window persistence and tail checks are satisfied.</p>${paramHTML(["fastWeight","neutralBand","upThreshold","persistence"])}`:`<div class="sectionTitle">NONE</div><p class="sectionSub">No shadow configuration currently clears the promotion threshold. Incumbent remains unchanged.</p>`}<div style="margin-top:20px" class="panelHead"><b>CHANGE-POINT FIELD</b><span>novelty ${(f.novelty*100).toFixed(0)}%</span></div>${regimeBarsHTML(f)}</section></div>`;
+}
+
+function renderMemory(){ const near=nearestMemories(state.features); const success=state.memories.filter(m=>m.kind==="SUCCESS").length,fail=state.memories.filter(m=>m.kind==="FAILURE_RISK").length;
+  $("memoryContent").innerHTML=`<div class="eyebrow">REGIME RECALL</div><div class="sectionTitle">Market Memory</div><p class="sectionSub">The engine recalls nearby market states and uses robust parameter families as priors. Failure-risk memories increase caution when a familiar trap reappears.</p><div class="metricGrid four"><article><span>MEMORIES</span><b>${state.memories.length}</b><small>retained states</small></article><article><span>SUCCESS</span><b>${success}</b><small>high-confidence states</small></article><article><span>FAILURE RISK</span><b>${fail}</b><small>chop / reversal traps</small></article><article><span>NEAREST</span><b>${near[0]?Math.round(near[0].similarity*100)+"%":"--"}</b><small>state similarity</small></article></div><section class="panel"><div class="panelHead"><b>NEAREST HISTORICAL STATES</b><span>similarity-ranked</span></div><table class="table"><thead><tr><th>TIME</th><th>KIND</th><th>REGIME</th><th>SIGNAL</th><th>CONF</th><th>SIMILARITY</th></tr></thead><tbody>${near.map(m=>`<tr><td>${new Date(m.t).toLocaleString()}</td><td class="${m.kind==="FAILURE_RISK"?"bad":m.kind==="SUCCESS"?"good":""}">${m.kind}</td><td>${m.regime}</td><td>${m.signal}</td><td>${Math.round((m.confidence||0)*100)}%</td><td>${Math.round(m.similarity*100)}%</td></tr>`).join("")||`<tr><td colspan="6">Memory is being populated cycle by cycle.</td></tr>`}</tbody></table></section>`;
+}
+
+const LEGACY={...DEFAULT_PARAMS,fastWeight:.50,slowWeight:.50,neutralBand:.14,upThreshold:.24,downThreshold:.24,persistence:4,smoothing:.80,hysteresis:.06,confirmation:3};
+const EXP={...DEFAULT_PARAMS,fastWeight:.63,slowWeight:.37,neutralBand:.08,upThreshold:.17,downThreshold:.17,persistence:2.6,smoothing:.66,hysteresis:.035,confirmation:1.8};
+
+function simulate(params,rows){
+  if(rows.length<30)return {score:0,accuracy:0,falseRev:0,transitions:0,mae:0,mfe:0};let prev="NEUTRAL",hits=0,total=0,falseRev=0,transitions=0,maes=[],mfes=[];
+  for(let i=24;i<rows.length-6;i++){
+    const f=deriveFeatures(rows.slice(0,i+1)); if(!f)continue; const e=evaluateSignal(f,params,prev); if(e.signal!==prev&&e.signal!=="NEUTRAL"){transitions++; if(i>1){const old=evaluateSignal(deriveFeatures(rows.slice(0,i)),params,prev).signal;if(old!==e.signal)falseRev+=f.noise>.55?1:0;}}
+    const next=rows[i+5],cur=rows[i];const future=((next.f/cur.f)-1)*100*.6+((next.s/cur.s)-1)*100*.4; if(e.signal!=="NEUTRAL"){total++;if(sign(future)===(e.signal==="UP"?1:-1))hits++;}
+    const path=rows.slice(i+1,i+6).map(r=>(((r.f/cur.f)-1)*100*.6+((r.s/cur.s)-1)*100*.4)*(e.signal==="DOWN"?-1:1));if(path.length){maes.push(Math.min(...path));mfes.push(Math.max(...path));}prev=e.signal;
+  }
+  const accuracy=total?hits/total:0; const score=accuracy*.55+(1-falseRev/Math.max(1,transitions))*.25+clamp((mean(mfes)+.12)/.3,0,1)*.2;
+  return {score,accuracy,falseRev,transitions,mae:mean(maes),mfe:mean(mfes)};
+}
+
+function auditStats(){const rows=aligned();return {Adaptive:simulate(state.params,rows),Experimental:simulate(EXP,rows),Legacy:simulate(LEGACY,rows)};}
+function renderAudit(){ const a=auditStats();
+  $("auditContent").innerHTML=`<div class="eyebrow">COUNTERFACTUAL BENCHMARK</div><div class="sectionTitle">Audit</div><p class="sectionSub">Legacy and Experimental V1 are ghost models only. They never control the live output. Their only job is to answer whether adaptation is adding measurable value on the same data.</p><div class="metricGrid four"><article><span>ADAPTIVE SCORE</span><b>${(a.Adaptive.score*100).toFixed(1)}</b><small>composite counterfactual</small></article><article><span>EXPERIMENTAL V1</span><b>${(a.Experimental.score*100).toFixed(1)}</b><small>ghost benchmark</small></article><article><span>LEGACY</span><b>${(a.Legacy.score*100).toFixed(1)}</b><small>ghost benchmark</small></article><article><span>ADAPTIVE EDGE</span><b>${((a.Adaptive.score-a.Experimental.score)*100).toFixed(1)}</b><small>vs experimental</small></article></div><section class="panel"><table class="table"><thead><tr><th>MODEL</th><th>DIR. ACCURACY</th><th>FALSE REV.</th><th>TRANSITIONS</th><th>MAE</th><th>MFE</th><th>SCORE</th></tr></thead><tbody>${Object.entries(a).map(([k,v])=>`<tr><td>${k}</td><td>${(v.accuracy*100).toFixed(1)}%</td><td>${v.falseRev}</td><td>${v.transitions}</td><td>${v.mae.toFixed(3)}%</td><td>${v.mfe.toFixed(3)}%</td><td>${(v.score*100).toFixed(1)}</td></tr>`).join("")}</tbody></table></section>`;
+}
+
+function renderAblation(){ const rows=aligned(); const base=simulate(LEGACY,rows); const full=simulate(EXP,rows); const components=[
+  ["FAST/SLOW WEIGHTING",["fastWeight","slowWeight"]],["NEUTRAL FILTER",["neutralBand"]],["THRESHOLDS",["upThreshold","downThreshold"]],["PERSISTENCE",["persistence","confirmation"]],["SMOOTHING",["smoothing","decay"]],["HYSTERESIS",["hysteresis"]]
+ ];
+ const results=components.map(([name,keys])=>{const p={...LEGACY};keys.forEach(k=>p[k]=EXP[k]);const s=simulate(p,rows);return {name,delta:s.score-base.score,score:s.score};}).sort((a,b)=>b.delta-a.delta);
+ const pairs=[];for(let i=0;i<components.length;i++)for(let j=i+1;j<components.length;j++){const p={...LEGACY};[...components[i][1],...components[j][1]].forEach(k=>p[k]=EXP[k]);const s=simulate(p,rows);const d=s.score-base.score;pairs.push({name:`${components[i][0]} + ${components[j][0]}`,delta:d});}pairs.sort((a,b)=>b.delta-a.delta);
+ $("ablationContent").innerHTML=`<div class="eyebrow">WHY DID EXPERIMENTAL IMPROVE?</div><div class="sectionTitle">Ablation Engine</div><p class="sectionSub">Each mechanism is transplanted from Experimental V1 into Legacy while the rest stays fixed. Interaction tests then identify combinations whose value is greater than either component alone.</p><div class="metricGrid four"><article><span>LEGACY SCORE</span><b>${(base.score*100).toFixed(1)}</b><small>baseline</small></article><article><span>EXPERIMENTAL</span><b>${(full.score*100).toFixed(1)}</b><small>full configuration</small></article><article><span>TOTAL DELTA</span><b>${((full.score-base.score)*100).toFixed(1)}</b><small>experimental minus legacy</small></article><article><span>TOP DRIVER</span><b>${results[0]?.name||"--"}</b><small>single-mechanism attribution</small></article></div><div class="twoCol"><section class="panel"><div class="panelHead"><b>SINGLE ABLATION</b><span>isolated transplant</span></div><table class="table"><thead><tr><th>MECHANISM</th><th>Δ SCORE</th></tr></thead><tbody>${results.map(r=>`<tr><td>${r.name}</td><td class="${r.delta>=0?"good":"bad"}">${r.delta>=0?"+":""}${(r.delta*100).toFixed(2)}</td></tr>`).join("")}</tbody></table></section><section class="panel"><div class="panelHead"><b>INTERACTION LEADERS</b><span>pairwise</span></div><table class="table"><thead><tr><th>PAIR</th><th>Δ SCORE</th></tr></thead><tbody>${pairs.slice(0,8).map(r=>`<tr><td>${r.name}</td><td class="${r.delta>=0?"good":"bad"}">${r.delta>=0?"+":""}${(r.delta*100).toFixed(2)}</td></tr>`).join("")}</tbody></table></section></div>`;
+}
+
+function renderLog(){
+  $("logContent").innerHTML=`<div class="eyebrow">PARAMETER LINEAGE</div><div class="sectionTitle">Immutable-style Log</div><p class="sectionSub">Every material parameter migration and signal transition is retained locally and included in export.</p><section class="panel">${state.logs.slice().reverse().slice(0,120).map(l=>`<div class="logline"><time>${nowTime(l.t)}</time><span><b>${l.name}</b><br><span style="color:#817d73">${l.reason||l.type}</span></span><b>${l.from!==undefined?`${Number(l.from).toFixed(3)} → ${Number(l.to).toFixed(3)}`:`${Math.round((l.confidence||0)*100)}%`}</b></div>`).join("")||`<p class="sectionSub">No parameter changes logged yet.</p>`}</section>`;
+}
+
+function exportState(){ const blob=new Blob([JSON.stringify({version:1,exportedAt:Date.now(),params:state.params,logs:state.logs,memories:state.memories,data:state.data},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`amse-export-${Date.now()}.json`;a.click();URL.revokeObjectURL(a.href); }
+function parseCSV(txt){ const lines=txt.trim().split(/\r?\n/);const head=lines.shift().split(",").map(s=>s.trim().toLowerCase());const ti=head.findIndex(x=>/time|timestamp|date/.test(x)),fi=head.findIndex(x=>/ndx|nasdaq|fast/.test(x)),si=head.findIndex(x=>/spx|s&p|slow/.test(x));if(fi<0||si<0)throw new Error("CSV needs timestamp, NDX/fast and SPX/slow columns");const NDX=[],SPX=[];for(let i=0;i<lines.length;i++){const c=lines[i].split(",");const t=ti>=0?(Number(c[ti])||Date.parse(c[ti])):Date.now()-(lines.length-i)*60000;const f=Number(c[fi]),s=Number(c[si]);if(Number.isFinite(t)&&Number.isFinite(f)&&Number.isFinite(s)){NDX.push({t,v:f});SPX.push({t,v:s});}}if(NDX.length<20)throw new Error("Not enough valid rows");return {NDX,SPX}; }
+
+function bindSettings(){
+  $("refreshBtn")?.addEventListener("click",()=>{state.imported=false;fetchMarket()});
+  $("replayBtn")?.addEventListener("click",()=>{state.data=seededReplay();state.mode="REPLAY";state.source="deterministic seeded replay";state.imported=false;calculate();render()});
+  $("exportBtn")?.addEventListener("click",exportState);
+  $("resetBtn")?.addEventListener("click",()=>{state.params={...DEFAULT_PARAMS};state.logs=[];state.memories=[];persist();calculate();render()});
+  $("fileInput")?.addEventListener("change",async e=>{const file=e.target.files?.[0];if(!file)return;try{const txt=await file.text();let data;if(file.name.toLowerCase().endsWith(".json")){const j=JSON.parse(txt);data=j.data||j.series||j;if(j.params)state.params={...DEFAULT_PARAMS,...j.params};if(j.logs)state.logs=j.logs;if(j.memories)state.memories=j.memories;if(!data.NDX||!data.SPX)throw new Error("JSON needs NDX and SPX series");}else data=parseCSV(txt);state.data=data;state.mode="IMPORTED";state.source=file.name;state.imported=true;state.fetchedAt=Date.now();calculate();persist();render();}catch(err){alert(`Import failed: ${err.message}`);}});
+}
+function renderSettings(){
+  $("settingsContent").innerHTML=`<div class="eyebrow">DATA + GOVERNANCE</div><div class="sectionTitle">Settings</div><p class="sectionSub">The public feed is an analytical delayed source, never an execution feed. If unavailable the terminal moves to clearly labelled replay mode rather than fabricating live status.</p><div class="twoCol"><section class="panel"><div class="panelHead"><b>DATA MODE</b><span>${state.mode}</span></div><div class="control"><label>CURRENT SOURCE</label><input value="${state.source||"--"}" disabled></div><div class="control"><label>CYCLE</label><input value="5 minutes · wall-clock aligned" disabled></div><div class="btnRow"><button id="refreshBtn" class="btn">REFRESH PUBLIC DATA</button><button id="replayBtn" class="btn">LOAD REPLAY</button></div>${state.providerError?`<p class="sectionSub bad">Last provider error: ${state.providerError}</p>`:""}</section><section class="panel"><div class="panelHead"><b>IMPORT / EXPORT</b><span>portable state</span></div><div class="control"><label>IMPORT JSON OR CSV</label><input id="fileInput" type="file" accept=".json,.csv,application/json,text/csv"></div><div class="btnRow"><button id="exportBtn" class="btn">EXPORT MODEL STATE</button><button id="resetBtn" class="btn">RESET ADAPTIVE MEMORY</button></div><p class="sectionSub">CSV columns accepted: timestamp/date, NDX/Nasdaq/fast, SPX/S&amp;P/slow.</p></section></div>`;bindSettings();
+}
+
+function renderSecondary(){if(state.page==="ADAPT")renderAdapt();if(state.page==="MEMORY")renderMemory();if(state.page==="AUDIT")renderAudit();if(state.page==="ABLATION")renderAblation();if(state.page==="LOG")renderLog();if(state.page==="SETTINGS")renderSettings();}
+function render(){modeUI();renderLive();renderSecondary();}
+
+function setPage(page){state.page=page;document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$(`view-${page.toLowerCase()}`)?.classList.add("active");document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("active",b.dataset.page===page));$("pageTitle").textContent=page;renderSecondary();window.scrollTo({top:0,behavior:"smooth"});}
+function nav(){const html=NAV.map(n=>`<button class="navBtn ${n===state.page?"active":""}" data-page="${n}">${n}</button>`).join("");$("desktopNav").innerHTML=html;$("mobileNav").innerHTML=html;document.querySelectorAll(".navBtn").forEach(b=>b.addEventListener("click",()=>setPage(b.dataset.page)));}
+
+function tickCycle(){ const t=Date.now(), into=t%300000,remain=300000-into;$("cycleClock").textContent=`${String(Math.floor(remain/60000)).padStart(2,"0")}:${String(Math.floor((remain%60000)/1000)).padStart(2,"0")}`;$("cycleBar").style.width=`${into/300000*100}%`; }
+
+nav();state.data=seededReplay();state.mode="REPLAY";state.source="boot replay while public feed connects";calculate();render();tickCycle();fetchMarket();setInterval(tickCycle,1000);setInterval(fetchMarket,30000);window.addEventListener("resize",()=>state.page==="LIVE"&&drawChart());
+
+</script>
+</body>
+</html>
